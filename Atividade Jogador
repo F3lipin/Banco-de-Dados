@@ -1,0 +1,40 @@
+-- tabela time
+create table time(
+id int auto_increment primary key,
+nome varchar(100) not null,    
+data_fundacao date,
+estadio varchar(100),
+tecnico varchar(100)
+);
+
+-- tabela jogador com relacionamento
+create table jogador(
+id int auto_increment primary key,
+nome varchar(250) not null,
+numero_camisa varchar(3) not null,
+altura int,
+data_nsc date,
+id_time int,
+constraint fk_jogador_time
+    foreign key (id_time) references time(id),
+constraint unique_camisa_por_time
+    unique (numero_camisa, id_time)
+);
+
+insert into time(nome, data_fundacao, estadio, tecnico) 
+values ("Botafogo", "1904-08-12", "Nilton Santos", "Martín Anselmi");
+
+insert into jogador (nome, numero_camisa, altura, data_nsc, id_time) values ("Bruno", "1", 190, "1984-12-23", 1);
+insert into jogador (nome, numero_camisa, altura, data_nsc, id_time) values ("Carlos", "2", 175, "1990-05-14", 1);
+insert into jogador (nome, numero_camisa, altura, data_nsc, id_time) values ("Rafael", "3", 182, "1988-03-22", 1);
+insert into jogador (nome, numero_camisa, altura, data_nsc, id_time) values ("Marcos", "4", 185, "1992-11-09", 1);
+insert into jogador (nome, numero_camisa, altura, data_nsc, id_time) values ("Lucas", "5", 178, "1995-07-30", 1);
+insert into jogador (nome, numero_camisa, altura, data_nsc, id_time) values ("Fernando", "6", 188, "1987-01-18", 1);
+insert into jogador (nome, numero_camisa, altura, data_nsc, id_time) values ("Diego", "7", 180, "1993-09-12", 1);
+insert into jogador (nome, numero_camisa, altura, data_nsc, id_time) values ("André", "8", 176, "1991-04-25", 1);
+insert into jogador (nome, numero_camisa, altura, data_nsc, id_time) values ("Thiago", "9", 183, "1989-06-17", 1);
+insert into jogador (nome, numero_camisa, altura, data_nsc, id_time) values ("Gabriel", "10", 177, "1996-02-08", 1);
+
+-- Ver dados
+select * from time;
+select * from jogador;
